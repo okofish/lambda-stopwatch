@@ -10,6 +10,8 @@ First, you'll want to install the dependencies:
 pip3 install boto3 apscheduler scipy
 ```
 
+You'll also have to [configure](http://boto3.readthedocs.io/en/latest/guide/quickstart.html#configuration) Boto 3 if you haven't already.
+
 Then you can start the script. At a minimum you must specify the Lambda function to use, but you can also use a couple other arguments:
 ```
 usage: tester.py [-h] [--freq FREQ] [--count COUNT] function
