@@ -1,7 +1,7 @@
 # lambda-stopwatch
 
 [![asciicast](https://asciinema.org/a/cei4arkpb01n2kc7c2psz3sju.png)](https://asciinema.org/a/cei4arkpb01n2kc7c2psz3sju)
-lambda-stopwatch is a simple Python script that calls your AWS Lambda function a specified number of times over a specified period, and outputs statistics about its response time.
+lambda-stopwatch is a simple Python script that calls your AWS Lambda function repeatedly and outputs statistics about its response time.
 
 ## How do I use it?
 
@@ -22,5 +22,6 @@ optional arguments:
   --freq FREQ    number of seconds between each call (default: 60)
   --count COUNT  number of times to call function (default: 0 (infinite))
 ```
+(with a `--count` of 0, the script will run until you stop it with Ctrl-C)
 
 Protip: If you run this script for a long period of time (>30 minutes) you can use Amazon CloudWatch Metrics to generate pretty charts of the latency.
