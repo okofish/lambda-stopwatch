@@ -1,7 +1,7 @@
 import argparse
 from base64 import b64decode
 from re import findall
-import signal
+from signal import signal, SIGINT
 import sys
 from statistics import mean, median, stdev
 import boto3
@@ -54,7 +54,7 @@ def execute():
     if args.count > 0 and len(durations) >= args.count:
         scheduler.shutdown(wait=False)
 
-signal.signal(signal.SIGINT, endgame)
+signal(SIGINT, endgame)
 
 scheduler.add_job(execute, 'interval', seconds=args.freq)
 print('Starting, {} seconds until first execution...'.format(args.freq))
