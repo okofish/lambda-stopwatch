@@ -3,10 +3,10 @@ from base64 import b64decode
 from re import findall
 import signal
 import sys
-import statistics
+from statistics import mean, median, stdev
 import boto3
 from apscheduler.schedulers.blocking import BlockingScheduler
-import scipy.stats
+from scipy.stats import scoreatpercentile
 
 l = boto3.client('lambda')
 
@@ -30,11 +30,11 @@ def endgame(*_):
     print('\nEnding, with {} executions sent.'.format(len(durations)))
     if len(durations) >= 2:
         stats = [
-            ('Mean', statistics.mean(durations)),
-            ('Median', statistics.median(durations)),
-            ('Standard deviation', statistics.stdev(durations)),
-            ('5th percentile', scipy.stats.scoreatpercentile(durations, 5)),
-            ('95th percentile', scipy.stats.scoreatpercentile(durations, 95)),
+            ('Mean', mean(durations)),
+            ('Median', median(durations)),
+            ('Standard deviation', stdev(durations)),
+            ('5th percentile', scoreatpercentile(durations, 5)),
+            ('95th percentile', scoreatpercentile(durations, 95)),
         ]
         for name, stat in stats:
             print('{0}: {1:.2f} ms'.format(name, stat))
