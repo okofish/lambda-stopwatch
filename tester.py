@@ -12,7 +12,7 @@ l = boto3.client('lambda')
 
 parser = argparse.ArgumentParser()
 parser.add_argument('function',
-    help='name of the lambda function to call')
+    help='name/ARN of the lambda function to call')
 parser.add_argument('--freq', type=int, default=60,
     help='number of seconds between each call (default: 60)')
 parser.add_argument('--count', type=int, default=0,
